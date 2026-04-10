@@ -1,28 +1,16 @@
-# Turborepo starter
+# RestOS — Restaurant Management Platform
 
-This Turborepo starter is maintained by the Turborepo core team.
+Multi-tenant SaaS for restaurant operations — India-first, global-ready.
 
-## Using this example
-
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## Tech Stack
+- **Web Dashboard**: Next.js 16 (App Router, TypeScript) — 13 pages
+- **Kitchen Display**: Next.js 16 (dark theme, station-based KDS)
+- **Landing Page**: Next.js 16 (marketing, pricing, features)
+- **Captain App**: React Native (Expo) — placeholder
+- **Database**: PostgreSQL + Prisma ORM (30+ models)
+- **API**: tRPC v11 (12 routers, type-safe)
+- **Auth**: NextAuth v5 (credentials + 4-digit PIN, 6-tier RBAC)
+- **Monorepo**: Turborepo + pnpm workspaces
 
 ### Utilities
 
