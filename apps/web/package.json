@@ -11,17 +11,23 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@restos/ui": "workspace:*",
+    "@auth/prisma-adapter": "^2.11.1",
     "@restos/db": "workspace:*",
     "@restos/types": "workspace:*",
+    "@restos/ui": "workspace:*",
     "@restos/utils": "workspace:*",
+    "bcryptjs": "^3.0.3",
+    "jose": "^6.2.2",
     "next": "16.2.0",
+    "next-auth": "5.0.0-beta.30",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@restos/eslint-config": "workspace:*",
     "@restos/typescript-config": "workspace:*",
+    "@types/bcryptjs": "^3.0.0",
     "@types/node": "^22.15.3",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
