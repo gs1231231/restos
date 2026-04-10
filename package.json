@@ -4,9 +4,17 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=@restos/web",
+    "dev:kitchen": "turbo run dev --filter=@restos/kitchen",
+    "dev:landing": "turbo run dev --filter=@restos/landing",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "db:generate": "pnpm --filter @restos/db generate",
+    "db:migrate": "pnpm --filter @restos/db migrate",
+    "db:push": "pnpm --filter @restos/db push",
+    "db:seed": "pnpm --filter @restos/db seed",
+    "db:studio": "pnpm --filter @restos/db studio"
   },
   "devDependencies": {
     "prettier": "^3.7.4",
