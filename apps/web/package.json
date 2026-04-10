@@ -16,12 +16,18 @@
     "@restos/types": "workspace:*",
     "@restos/ui": "workspace:*",
     "@restos/utils": "workspace:*",
+    "@tanstack/react-query": "^5.97.0",
+    "@trpc/client": "^11.16.0",
+    "@trpc/next": "^11.16.0",
+    "@trpc/react-query": "^11.16.0",
+    "@trpc/server": "^11.16.0",
     "bcryptjs": "^3.0.3",
     "jose": "^6.2.2",
     "next": "16.2.0",
     "next-auth": "5.0.0-beta.30",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "superjson": "^2.2.6",
     "zod": "^4.3.6"
   },
   "devDependencies": {
