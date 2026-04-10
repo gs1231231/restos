@@ -97,7 +97,27 @@ export default function PinLoginPage() {
           <button onClick={handleBackspace} style={{ ...btnStyle, fontSize: 18, color: '#64748b' }}>⌫</button>
         </div>
 
-        <div style={{ marginTop: 32, fontSize: 13, color: '#475569' }}>
+        {/* Instant demo */}
+        <div style={{ marginTop: 28, padding: 16, background: 'rgba(255,255,255,0.06)', borderRadius: 12, border: '1px solid rgba(255,255,255,0.1)' }}>
+          <div style={{ fontSize: 11, fontWeight: 600, color: '#94a3b8', marginBottom: 10, textAlign: 'center' }}>INSTANT DEMO — TAP TO ENTER</div>
+          <div style={{ display: 'flex', gap: 8 }}>
+            {[
+              { label: '👑 Owner', role: 'OWNER', name: 'Rajesh Kumar' },
+              { label: '📋 Manager', role: 'MANAGER', name: 'Amit Sharma' },
+              { label: '🍽️ Captain', role: 'CAPTAIN', name: 'Suresh' },
+            ].map(d => (
+              <button key={d.role} onClick={() => {
+                localStorage.setItem('restos_token', 'demo-token');
+                localStorage.setItem('restos_user', JSON.stringify({ name: d.name, role: d.role }));
+                router.push('/dashboard');
+              }} style={{ flex: 1, padding: '10px 0', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: 8, fontSize: 11, fontWeight: 600, cursor: 'pointer', color: '#e2e8f0' }}>
+                {d.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ marginTop: 16, fontSize: 13, color: '#475569' }}>
           Manager? <a href="/login" style={{ color: '#818cf8' }}>Use email login</a>
         </div>
       </div>

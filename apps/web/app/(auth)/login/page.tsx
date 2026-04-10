@@ -11,9 +11,10 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const demoLogin = (demoPhone: string, demoPass: string) => {
-    setPhone(demoPhone);
-    setPassword(demoPass);
+  const demoLogin = (role: string, name: string) => {
+    localStorage.setItem('restos_token', 'demo-token');
+    localStorage.setItem('restos_user', JSON.stringify({ name, role, phone: '9876543210' }));
+    router.push('/dashboard');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -90,15 +91,16 @@ export default function LoginPage() {
           </button>
         </form>
 
-        {/* Demo Credentials */}
-        <div style={{ marginTop: 24, padding: 16, background: '#f8fafc', borderRadius: 10, border: '1px solid #e5e7eb' }}>
-          <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b', marginBottom: 8, textAlign: 'center' }}>QUICK DEMO LOGIN</div>
+        {/* Demo — instant access */}
+        <div style={{ marginTop: 24, padding: 16, background: '#f0fdf4', borderRadius: 10, border: '1px solid #bbf7d0' }}>
+          <div style={{ fontSize: 12, fontWeight: 600, color: '#16a34a', marginBottom: 10, textAlign: 'center' }}>INSTANT DEMO — NO LOGIN NEEDED</div>
           <div style={{ display: 'flex', gap: 6 }}>
             {[
-              { label: 'Owner', phone: '9876543210', pass: 'demo1234' },
-              { label: 'Manager', phone: '9876543211', pass: 'demo1234' },
+              { label: '👑 Owner', role: 'OWNER', name: 'Rajesh Kumar' },
+              { label: '📋 Manager', role: 'MANAGER', name: 'Amit Sharma' },
+              { label: '🍽️ Captain', role: 'CAPTAIN', name: 'Suresh Yadav' },
             ].map(d => (
-              <button key={d.label} type="button" onClick={() => demoLogin(d.phone, d.pass)} style={{ flex: 1, padding: '8px 0', background: '#fff', border: '1px solid #e5e7eb', borderRadius: 6, fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#374151' }}>
+              <button key={d.role} type="button" onClick={() => demoLogin(d.role, d.name)} style={{ flex: 1, padding: '10px 0', background: '#fff', border: '1px solid #bbf7d0', borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#16a34a' }}>
                 {d.label}
               </button>
             ))}
