@@ -6,14 +6,16 @@ import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard, UtensilsCrossed, Monitor, ShoppingCart, CalendarCheck,
   BarChart3, BookOpen, Users, Package, Settings, ChevronLeft, Bell,
-  Clock, LogOut, Store, Moon, Sun, ChefHat, Truck,
+  Clock, LogOut, Store, Moon, Sun, ChefHat, Truck, Receipt,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/tables', label: 'Tables', icon: UtensilsCrossed },
   { href: '/pos', label: 'POS', icon: Monitor },
+  { href: '/billing', label: 'Billing', icon: Receipt },
   { href: '/orders', label: 'Orders', icon: ShoppingCart },
+  { href: '/online', label: 'Online Orders', icon: Truck },
   { href: '/reservations', label: 'Bookings', icon: CalendarCheck },
   { href: '/menu', label: 'Menu', icon: BookOpen },
   { href: '/customers', label: 'Customers', icon: Users },
