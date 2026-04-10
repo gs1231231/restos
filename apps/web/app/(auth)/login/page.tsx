@@ -9,6 +9,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   const router = useRouter();
 
   const demoLogin = (role: string, name: string) => {
@@ -43,74 +44,65 @@ export default function LoginPage() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', fontFamily: 'system-ui, sans-serif' }}>
-      <div style={{ width: '100%', maxWidth: 400, padding: 32, background: '#fff', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.15)' }}>
-        <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <h1 style={{ fontSize: 32, fontWeight: 800, margin: 0, color: '#1e293b' }}>RestOS</h1>
-          <p style={{ color: '#64748b', marginTop: 4, fontSize: 14 }}>Restaurant Management Platform</p>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, #6C3CE1 0%, #4F1D91 50%, #2D0B56 100%)', fontFamily: 'system-ui, sans-serif' }}>
+      <div style={{ width: '100%', maxWidth: 420, padding: 32 }}>
+        {/* Brand */}
+        <div style={{ textAlign: 'center', marginBottom: 28 }}>
+          <h1 style={{ fontSize: 36, fontWeight: 800, margin: 0, color: '#fff' }}>RestOS</h1>
+          <p style={{ color: 'rgba(255,255,255,0.6)', marginTop: 4, fontSize: 14 }}>Restaurant Management Platform</p>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: 16 }}>
-            <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 6 }}>Phone Number</label>
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="9876543210"
-              required
-              style={{ width: '100%', padding: '10px 14px', borderRadius: 8, border: '1px solid #d1d5db', fontSize: 14, outline: 'none', boxSizing: 'border-box' }}
-            />
+        {/* Demo — primary CTA */}
+        <div style={{ background: '#fff', borderRadius: 16, padding: 24, marginBottom: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.2)' }}>
+          <div style={{ textAlign: 'center', marginBottom: 16 }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: '#1e293b' }}>Try the Live Demo</div>
+            <div style={{ fontSize: 13, color: '#64748b', marginTop: 2 }}>One tap. No signup needed.</div>
           </div>
-
-          <div style={{ marginBottom: 20 }}>
-            <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 6 }}>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter password"
-              required
-              minLength={6}
-              style={{ width: '100%', padding: '10px 14px', borderRadius: 8, border: '1px solid #d1d5db', fontSize: 14, outline: 'none', boxSizing: 'border-box' }}
-            />
-          </div>
-
-          {error && (
-            <div style={{ padding: '10px 14px', background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 8, color: '#dc2626', fontSize: 13, marginBottom: 16 }}>
-              {error}
-            </div>
-          )}
-
-          <button
-            type="submit"
-            disabled={loading}
-            style={{ width: '100%', padding: '12px 0', background: loading ? '#94a3b8' : '#6366f1', color: '#fff', border: 'none', borderRadius: 8, fontSize: 15, fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer' }}
-          >
-            {loading ? 'Signing in...' : 'Sign In'}
-          </button>
-        </form>
-
-        {/* Demo — instant access */}
-        <div style={{ marginTop: 24, padding: 16, background: '#f0fdf4', borderRadius: 10, border: '1px solid #bbf7d0' }}>
-          <div style={{ fontSize: 12, fontWeight: 600, color: '#16a34a', marginBottom: 10, textAlign: 'center' }}>INSTANT DEMO — NO LOGIN NEEDED</div>
-          <div style={{ display: 'flex', gap: 6 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
-              { label: '👑 Owner', role: 'OWNER', name: 'Rajesh Kumar' },
-              { label: '📋 Manager', role: 'MANAGER', name: 'Amit Sharma' },
-              { label: '🍽️ Captain', role: 'CAPTAIN', name: 'Suresh Yadav' },
+              { label: 'Enter as Owner', sub: 'Full access — POS, reports, settings', role: 'OWNER', name: 'Rajesh Kumar', color: '#6C3CE1', bg: '#f3f0ff' },
+              { label: 'Enter as Manager', sub: 'Orders, staff, billing', role: 'MANAGER', name: 'Amit Sharma', color: '#0891b2', bg: '#ecfeff' },
+              { label: 'Enter as Captain', sub: 'Tables, orders, KOT', role: 'CAPTAIN', name: 'Suresh Yadav', color: '#16a34a', bg: '#f0fdf4' },
             ].map(d => (
-              <button key={d.role} type="button" onClick={() => demoLogin(d.role, d.name)} style={{ flex: 1, padding: '10px 0', background: '#fff', border: '1px solid #bbf7d0', borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#16a34a' }}>
-                {d.label}
+              <button key={d.role} type="button" onClick={() => demoLogin(d.role, d.name)} style={{ width: '100%', padding: '14px 16px', background: d.bg, border: `1.5px solid ${d.color}22`, borderRadius: 10, cursor: 'pointer', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{ width: 40, height: 40, borderRadius: 10, background: d.color, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 16, flexShrink: 0 }}>{d.name[0]}</div>
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: d.color }}>{d.label} →</div>
+                  <div style={{ fontSize: 11, color: '#64748b', marginTop: 1 }}>{d.sub}</div>
+                </div>
               </button>
             ))}
           </div>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: 16, fontSize: 13, color: '#94a3b8' }}>
-          Captain / Kitchen? <a href="/pin" style={{ color: '#6366f1', fontWeight: 600 }}>PIN Login</a>
-          <span style={{ margin: '0 8px' }}>|</span>
-          New here? <a href="/register" style={{ color: '#6366f1', fontWeight: 600 }}>Sign Up</a>
+        {/* Login form — collapsed by default */}
+        {!showForm ? (
+          <button onClick={() => setShowForm(true)} style={{ width: '100%', padding: '12px 0', background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 10, fontSize: 13, fontWeight: 500, cursor: 'pointer' }}>
+            Already have an account? Sign in with phone →
+          </button>
+        ) : (
+          <div style={{ background: '#fff', borderRadius: 16, padding: 24, boxShadow: '0 10px 40px rgba(0,0,0,0.15)' }}>
+            <form onSubmit={handleSubmit}>
+              <div style={{ marginBottom: 12 }}>
+                <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 4 }}>Phone</label>
+                <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="9876543210" required style={{ width: '100%', padding: '10px 12px', borderRadius: 8, border: '1px solid #d1d5db', fontSize: 14, outline: 'none', boxSizing: 'border-box' }} />
+              </div>
+              <div style={{ marginBottom: 14 }}>
+                <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 4 }}>Password</label>
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" required minLength={6} style={{ width: '100%', padding: '10px 12px', borderRadius: 8, border: '1px solid #d1d5db', fontSize: 14, outline: 'none', boxSizing: 'border-box' }} />
+              </div>
+              {error && <div style={{ padding: '8px 12px', background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 8, color: '#dc2626', fontSize: 12, marginBottom: 12 }}>{error}</div>}
+              <button type="submit" disabled={loading} style={{ width: '100%', padding: '11px 0', background: loading ? '#94a3b8' : '#6C3CE1', color: '#fff', border: 'none', borderRadius: 8, fontSize: 14, fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer' }}>
+                {loading ? 'Signing in...' : 'Sign In'}
+              </button>
+            </form>
+          </div>
+        )}
+
+        <div style={{ textAlign: 'center', marginTop: 16, fontSize: 13 }}>
+          <a href="/pin" style={{ color: 'rgba(255,255,255,0.6)' }}>PIN Login</a>
+          <span style={{ color: 'rgba(255,255,255,0.3)', margin: '0 10px' }}>|</span>
+          <a href="/register" style={{ color: 'rgba(255,255,255,0.6)' }}>Create Account</a>
         </div>
       </div>
     </div>
