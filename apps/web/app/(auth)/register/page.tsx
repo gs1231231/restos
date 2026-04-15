@@ -58,7 +58,10 @@ export default function RegisterPage() {
               <div><label style={labelStyle}>Full Name *</label>
                 <input value={form.name} onChange={e => update('name', e.target.value)} placeholder="Rajesh Kumar" style={inputStyle} required /></div>
               <div><label style={labelStyle}>Phone Number *</label>
-                <input value={form.phone} onChange={e => update('phone', e.target.value)} placeholder="9876543210" type="tel" style={inputStyle} required /></div>
+                <div style={{ display: 'flex', gap: 0 }}>
+                  <span style={{ display: 'flex', alignItems: 'center', padding: '0 12px', background: '#f3f4f6', border: '1px solid #d1d5db', borderRight: 'none', borderRadius: '8px 0 0 8px', fontSize: 14, color: '#374151', fontWeight: 500, whiteSpace: 'nowrap' }}>+91</span>
+                  <input value={form.phone} onChange={e => update('phone', e.target.value)} placeholder="9876543210" type="tel" style={{ ...inputStyle, borderRadius: '0 8px 8px 0' }} required />
+                </div></div>
               <div><label style={labelStyle}>Email</label>
                 <input value={form.email} onChange={e => update('email', e.target.value)} placeholder="you@restaurant.com" type="email" style={inputStyle} /></div>
               <div><label style={labelStyle}>Password *</label>
